@@ -26,7 +26,6 @@
 
 /* ── 02. CSS Custom Properties ─────────────────────────── */
 :root {
-  /* Colors */
   --clr-primary:       #C8553D;
   --clr-primary-dark:  #A03E2B;
   --clr-primary-light: #E8735A;
@@ -42,12 +41,10 @@
   --clr-white:         #FFFDF8;
   --clr-border:        #E8D5B0;
 
-  /* Typography */
   --font-display:  'Cinzel', serif;
   --font-heading:  'Cormorant Garamond', serif;
   --font-body:     'Jost', sans-serif;
 
-  /* Font scale */
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;
   --text-base: 1rem;
@@ -59,7 +56,6 @@
   --text-5xl:  3.5rem;
   --text-hero: 6rem;
 
-  /* Spacing */
   --sp-1:  0.25rem;
   --sp-2:  0.5rem;
   --sp-3:  0.75rem;
@@ -72,14 +68,12 @@
   --sp-20: 5rem;
   --sp-24: 6rem;
 
-  /* Radii */
   --r-sm:   4px;
   --r-md:   8px;
   --r-lg:   16px;
   --r-xl:   24px;
   --r-full: 9999px;
 
-  /* Shadows */
   --shadow-sm: 0 2px 8px  rgba(44,24,16,0.08);
   --shadow-md: 0 4px 20px rgba(44,24,16,0.12);
   --shadow-lg: 0 8px 40px rgba(44,24,16,0.16);
@@ -116,7 +110,6 @@ img { display: block; max-width: 100%; }
   padding: 0 var(--sp-8);
 }
 
-/* Section label ( ——— LABEL TEXT ——— ) */
 .section-label {
   display: flex;
   align-items: center;
@@ -140,7 +133,6 @@ img { display: block; max-width: 100%; }
   color: var(--clr-primary);
 }
 
-/* Section headings */
 .section-title {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, var(--text-5xl));
@@ -166,7 +158,6 @@ img { display: block; max-width: 100%; }
 }
 .section-subtitle.light { color: rgba(255,255,255,0.6); }
 
-/* Buttons */
 .btn-primary {
   display: inline-block;
   background: var(--clr-primary);
@@ -363,7 +354,6 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
 }
 
-/* Full-cover background photo */
 .hero-bg {
   position: absolute; inset: 0;
 }
@@ -374,7 +364,6 @@ img { display: block; max-width: 100%; }
   display: block;
 }
 
-/* Dark cinematic overlay */
 .hero-overlay {
   position: absolute; inset: 0;
   z-index: 1;
@@ -394,7 +383,6 @@ img { display: block; max-width: 100%; }
   z-index: 2;
   pointer-events: none;
 }
-/* Glow ring behind wheel */
 .hero-wheel-wrap::before {
   content: '';
   position: absolute;
@@ -405,7 +393,6 @@ img { display: block; max-width: 100%; }
 }
 .hero-wheel {
   width: 100%; height: 100%;
-  /* animation-duration is controlled via JS for interactive speed */
   animation: wheelSpin var(--wheel-duration, 120s) linear infinite;
   filter: drop-shadow(0 0 18px rgba(212,160,23,0.25));
   transition: filter 0.8s ease;
@@ -414,7 +401,6 @@ img { display: block; max-width: 100%; }
   filter: drop-shadow(0 0 32px rgba(212,160,23,0.55));
 }
 
-/* Hero text content */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -519,7 +505,6 @@ img { display: block; max-width: 100%; }
   background: rgba(255,255,255,0.2);
 }
 
-/* Scroll indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 40px; right: 60px;
@@ -625,7 +610,6 @@ img { display: block; max-width: 100%; }
   margin-top: var(--sp-8);
 }
 
-/* Premium Card Design */
 .about-highlight {
   display: flex;
   gap: var(--sp-4);
@@ -633,17 +617,16 @@ img { display: block; max-width: 100%; }
   background: var(--clr-white);
   border-radius: var(--r-md);
   border: 1px solid var(--clr-border);
-  border-left-width: 4px; /* Thick colored left accent */
+  border-left-width: 4px;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
-/* Specific Border Colors */
 .about-highlight.highlight-1 { border-left-color: var(--clr-primary); }
 .about-highlight.highlight-2 { border-left-color: var(--clr-secondary); }
-.about-highlight.highlight-3 { border-left-color: #2C5282; } /* River Blue */
+.about-highlight.highlight-3 { border-left-color: #2C5282; }
 .about-highlight.highlight-4 { border-left-color: var(--clr-accent); }
 
 .about-highlight:hover {
@@ -651,7 +634,6 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 20px 40px rgba(44, 24, 16, 0.2);
 }
 
-/* The "Inversion" Reveal Background */
 .about-highlight::after {
   content: '';
   position: absolute;
@@ -671,7 +653,6 @@ img { display: block; max-width: 100%; }
   transform: scaleX(1);
 }
 
-/* Text & Icon adjustments on hover */
 .about-highlight:hover h4,
 .about-highlight:hover p,
 .about-highlight:hover .highlight-icon {
@@ -738,7 +719,6 @@ img { display: block; max-width: 100%; }
 .destination-card:hover         { transform: translateY(-8px); box-shadow: var(--shadow-xl); }
 .destination-card:first-child   { grid-column: span 2; }
 
-/* Image area — natural size, no cropping */
 .dest-visual { position: relative; overflow: hidden; }
 .dest-visual img {
   width: 100%; height: auto;
@@ -843,7 +823,6 @@ img { display: block; max-width: 100%; }
 .culture-stat span  { display: block; font-family: var(--font-heading); font-size: var(--text-3xl); font-weight: 600; color: var(--clr-accent); }
 .culture-stat small { font-size: 0.7rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; }
 
-/* Video panel (Rath Yatra right / Konark Dance left) */
 .culture-video-panel {
   position: relative;
   border-radius: var(--r-lg);
@@ -1039,7 +1018,6 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
 }
 
-/* Decorative background elements */
 .contact-section::before {
   content: '';
   position: absolute;
@@ -1075,7 +1053,6 @@ img { display: block; max-width: 100%; }
   z-index: 1;
 }
 
-/* Form */
 .contact-form-wrap {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.1);
@@ -1121,7 +1098,6 @@ img { display: block; max-width: 100%; }
 .form-input:focus           { border-bottom-color: var(--clr-accent); }
 .form-textarea              { height: 90px; resize: vertical; }
 
-/* Interest checkboxes */
 .checkbox-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1166,7 +1142,6 @@ img { display: block; max-width: 100%; }
 .form-submit:hover         { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,85,61,0.45); }
 .form-submit:hover::before { opacity: 1; }
 
-/* Right sidebar: reasons + contact info */
 .contact-sidebar { display: flex; flex-direction: column; gap: var(--sp-6); }
 
 .contact-reasons-title {
@@ -1323,6 +1298,7 @@ img { display: block; max-width: 100%; }
   color: var(--clr-text-mid);
 }
 
+
 /* ── 16. Animations ────────────────────────────────────── */
 @keyframes heroFadeIn {
   from { opacity: 0; transform: translateY(30px); }
@@ -1344,7 +1320,6 @@ img { display: block; max-width: 100%; }
   50%       { transform: scaleY(0.6); opacity: 1;   }
 }
 
-/* Scroll-reveal utility */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1364,7 +1339,6 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
 }
 
-/* Base Hover Structure for all cards */
 .destination-card::after, 
 .culture-art-card::after, 
 .food-card::after, 
@@ -1385,32 +1359,27 @@ img { display: block; max-width: 100%; }
   transform: scaleY(1);
 }
 
-/* Theme Colors - Destinations */
-.dest-1::after { background: #805E49; } /* Stone Sandstone */
-.dest-2::after { background: #005691; } /* Deep Sea Blue */
-.dest-3::after { background: #008B8B; } /* Turquoise Lake */
-.dest-4::after { background: #1B4332; } /* Deep Forest */
-.dest-5::after { background: #A0522D; } /* Sienna Temple */
+.dest-1::after { background: #805E49; }
+.dest-2::after { background: #005691; }
+.dest-3::after { background: #008B8B; }
+.dest-4::after { background: #1B4332; }
+.dest-5::after { background: #A0522D; }
 
-/* Theme Colors - Art */
-.art-1::after { background: #800000; } /* Crimson Heritage */
-.art-2::after { background: #000080; } /* Ikat Indigo */
-.art-3::after { background: #B8860B; } /* Antique Bronze */
+.art-1::after { background: #800000; }
+.art-2::after { background: #000080; }
+.art-3::after { background: #B8860B; }
 
-/* Theme Colors - Food */
-.food-1::after { background: #D4A017; } /* Lentil Gold */
-.food-2::after { background: #4682B4; } /* Steel Blue (Pakhala) */
-.food-3::after { background: #8B4513; } /* Caramelized Brown */
-.food-4::after { background: #E1AD01; } /* Mustard Yellow */
-.food-5::after { background: #F4A460; } /* Sweet Saffron */
+.food-1::after { background: #D4A017; }
+.food-2::after { background: #4682B4; }
+.food-3::after { background: #8B4513; }
+.food-4::after { background: #E1AD01; }
+.food-5::after { background: #F4A460; }
 
-/* Theme Colors - Travel Tips */
-.tip-1::after { background: #2E8B57; } /* Seasonal Green */
-.tip-2::after { background: #4169E1; } /* Royal Air Blue */
-.tip-3::after { background: #E4D00A; } /* Auto Yellow */
-.tip-4::after { background: #D2691E; } /* Warm Hospitality */
+.tip-1::after { background: #2E8B57; }
+.tip-2::after { background: #4169E1; }
+.tip-3::after { background: #E4D00A; }
+.tip-4::after { background: #D2691E; }
 
-/* Text Overrides on Hover */
 .destination-card:hover .dest-name,
 .destination-card:hover .dest-region,
 .destination-card:hover .dest-body p,
@@ -1438,7 +1407,6 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--clr-white);
 }
 
-/* Like Button Styles */
 .like-section {
   display: flex;
   align-items: center;
