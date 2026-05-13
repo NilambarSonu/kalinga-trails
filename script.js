@@ -45,28 +45,28 @@
 
 /* ── 03. Interactive Konark Wheel ───────────────────────── */
 (function initWheel() {
-  const hero  = document.getElementById('home');
+  const hero = document.getElementById('home');
   const wheel = document.querySelector('.hero-wheel');
   if (!hero || !wheel) return;
 
-  const DEFAULT_DURATION = 120; 
-  const MIN_DURATION     = 5;   
-  const INACTIVITY_MS    = 3000;
-  const RAMP_SPEED       = 0.45;
+  const DEFAULT_DURATION = 120;
+  const MIN_DURATION = 5;
+  const INACTIVITY_MS = 3000;
+  const RAMP_SPEED = 0.45;
 
   let currentDuration = DEFAULT_DURATION;
-  let targetDuration  = DEFAULT_DURATION;
+  let targetDuration = DEFAULT_DURATION;
   let inactivityTimer = null;
-  let rafId           = null;
-  let angle           = 0;
-  let lastTime        = null;
+  let rafId = null;
+  let angle = 0;
+  let lastTime = null;
 
   wheel.style.animation = 'none';
   wheel.style.transformOrigin = '50% 50%';
 
   function tick(now) {
     if (!lastTime) lastTime = now;
-    const delta = (now - lastTime) / 1000; 
+    const delta = (now - lastTime) / 1000;
     lastTime = now;
 
     const diff = targetDuration - currentDuration;
@@ -102,12 +102,12 @@
     if (e.type === 'click') {
       targetDuration = Math.max(MIN_DURATION, targetDuration - 35);
     }
-    
+
     resetInactivityTimer();
   }
 
   hero.addEventListener('click', handleInteraction);
-  
+
   hero.addEventListener('mousemove', () => {
     if (targetDuration < DEFAULT_DURATION) {
       resetInactivityTimer();
@@ -203,63 +203,59 @@
 
     fetch(scriptURL, {
       method: "POST",
-      mode: "no-cors", 
+      mode: "no-cors",
       body: JSON.stringify(formData),
       headers: {
         "Content-Type": "text/plain;charset=utf-8"
       }
     })
-    .then(() => {
-      btn.textContent = 'Request Received! ✓';
-      btn.style.background = 'linear-gradient(135deg, #2D6A4F, #40916C)';
-      
-      setTimeout(() => {
-        btn.textContent = originalBtnText;
-        btn.style.background = '';
-        btn.disabled = false;
-        form.reset();
-      }, 3500);
-    })
-    .catch(err => {
-      console.error('Submission Error:', err);
-      btn.textContent = 'Error! Try again. ❌';
-      btn.style.background = '#e53e3e';
-      
-      setTimeout(() => {
-        btn.textContent = originalBtnText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-    });
+      .then(() => {
+        btn.textContent = 'Request Received! ✓';
+        btn.style.background = 'linear-gradient(135deg, #2D6A4F, #40916C)';
+
+        setTimeout(() => {
+          btn.textContent = originalBtnText;
+          btn.style.background = '';
+          btn.disabled = false;
+          form.reset();
+        }, 3500);
+      })
+      .catch(err => {
+        console.error('Submission Error:', err);
+        btn.textContent = 'Error! Try again. ❌';
+        btn.style.background = '#e53e3e';
+
+        setTimeout(() => {
+          btn.textContent = originalBtnText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      });
   });
 })();
 
 
-/* ── 07. Creativity Like Button (Global Counter) ────────── */
+/* ── 07. Creativity Like Button (Unified Google Backend) ────────── */
 (function initLikeButton() {
   const likeBtn = document.getElementById('likeBtn');
   const likeCountEl = document.getElementById('likeCount');
   if (!likeBtn || !likeCountEl) return;
 
-  /* Using CounterAPI.dev - a more stable alternative in 2026 */
-  const namespace = 'kalinga_trails_official';
-  const key = 'total_likes';
-  const apiBase = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxGAcQ2lAMCQT34LsK1S1iaOhdY2xI8vQ1-Esvo876KnfxPOrBHdbbJwBoLpk7IhNxXew/exec";
   const storageKey = 'kalinga_trails_liked';
   let hasLiked = localStorage.getItem(storageKey) === 'true';
 
   function fetchCount() {
-    fetch(apiBase)
+    fetch(`${scriptURL}?action=getLikes`)
       .then(res => res.json())
       .then(data => {
-        if (data && typeof data.count !== 'undefined') {
-          likeCountEl.textContent = data.count;
+        if (data && typeof data.likes !== 'undefined') {
+          likeCountEl.textContent = data.likes;
         }
       })
       .catch(err => {
-        console.warn('Counter fetch failed:', err);
-        likeCountEl.textContent = '...'; 
+        console.warn('Like fetch failed:', err);
+        likeCountEl.textContent = hasLiked ? '4' : '3';
       });
   }
 
@@ -273,8 +269,6 @@
     }
   }
 
-  /* Initial Load */
-  likeCountEl.textContent = '...'; 
   fetchCount();
   updateUI();
 
@@ -284,16 +278,15 @@
       localStorage.setItem(storageKey, 'true');
       updateUI();
 
-      /* Use the /up endpoint to increment globally */
-      fetch(`${apiBase}/up`)
+      fetch(`${scriptURL}?action=addLike`, { method: 'POST' })
         .then(res => res.json())
         .then(data => {
-          if (data && typeof data.count !== 'undefined') {
-            likeCountEl.textContent = data.count;
+          if (data && typeof data.likes !== 'undefined') {
+            likeCountEl.textContent = data.likes;
           }
         })
         .catch(err => {
-          console.error('Counter increment failed:', err);
+          console.error('Like update failed:', err);
         });
     }
   });
