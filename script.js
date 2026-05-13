@@ -241,23 +241,25 @@
   const likeCountEl = document.getElementById('likeCount');
   if (!likeBtn || !likeCountEl) return;
 
-  const namespace = 'kalinga_trails_task3';
-  const key = 'likes';
-  const apiBase = `https://api.countapi.xyz`;
+  /* Using CounterAPI.dev - a more stable alternative in 2026 */
+  const namespace = 'kalinga_trails_official';
+  const key = 'total_likes';
+  const apiBase = `https://api.counterapi.dev/v1/${namespace}/${key}`;
 
   const storageKey = 'kalinga_trails_liked';
   let hasLiked = localStorage.getItem(storageKey) === 'true';
 
   function fetchCount() {
-    fetch(`${apiBase}/get/${namespace}/${key}`)
+    fetch(apiBase)
       .then(res => res.json())
       .then(data => {
-        if (data.value) {
-          likeCountEl.textContent = data.value;
+        if (data && typeof data.count !== 'undefined') {
+          likeCountEl.textContent = data.count;
         }
       })
-      .catch(() => {
-        likeCountEl.textContent = hasLiked ? '4' : '3';
+      .catch(err => {
+        console.warn('Counter fetch failed:', err);
+        likeCountEl.textContent = '...'; 
       });
   }
 
@@ -271,6 +273,8 @@
     }
   }
 
+  /* Initial Load */
+  likeCountEl.textContent = '...'; 
   fetchCount();
   updateUI();
 
@@ -280,15 +284,16 @@
       localStorage.setItem(storageKey, 'true');
       updateUI();
 
-      fetch(`${apiBase}/hit/${namespace}/${key}`)
+      /* Use the /up endpoint to increment globally */
+      fetch(`${apiBase}/up`)
         .then(res => res.json())
         .then(data => {
-          if (data.value) {
-            likeCountEl.textContent = data.value;
+          if (data && typeof data.count !== 'undefined') {
+            likeCountEl.textContent = data.count;
           }
         })
         .catch(err => {
-          console.error('Counter Error:', err);
+          console.error('Counter increment failed:', err);
         });
     }
   });
