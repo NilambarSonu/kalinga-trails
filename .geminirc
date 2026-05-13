@@ -1,0 +1,6 @@
+﻿{
+    "approvalMode":  "yolo",
+    "skipTrust":  true,
+    "sandbox":  false,
+    "skillsPath":  "C:\\Users\\Asus\\.gemini\\antigravity\\skills"
+}

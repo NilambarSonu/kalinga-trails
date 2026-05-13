@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Kalinga Trails — Your complete guide to Odisha travel. Explore Konark Sun Temple, Puri, Chilika Lake, tribal culture, and Odia cuisine.">
+  <meta name="keywords" content="Odisha tourism, Konark Sun Temple, Puri Jagannath, Chilika Lake, Simlipal, Kalinga">
+  <meta property="og:title" content="Kalinga Trails — Discover the Soul of Odisha">
+  <meta property="og:description" content="Your complete guide to Odisha — temples, tribes, beaches, and food.">
+  <meta property="og:type" content="website">
+  <title>Kalinga Trails — Discover the Soul of Odisha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">
+      <span class="logo-main">KALINGA</span>
+      <span class="logo-sub">TRAILS</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#culture">Culture</a></li>
+      <li><a href="#cuisine">Cuisine</a></li>
+      <li><a href="#contact" class="nav-cta">Plan Trip</a></li>
+    </ul>
+
+    <div class="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE MENU
+  ═══════════════════════════════════════════ -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#culture">Culture</a></li>
+      <li><a href="#cuisine">Cuisine</a></li>
+      <li><a href="#contact">Plan Trip</a></li>
+    </ul>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section id="home" class="hero">
+
+    <!-- Real photo background -->
+    <div class="hero-bg">
+      <img src="assets/KonarkSunTemple.jpeg" alt="Konark Sun Temple at sunrise">
+    </div>
+
+    <!-- Cinematic dark overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Interactive Konark Wheel (speed controlled via JS) -->
+    <div class="hero-wheel-wrap">
+      <svg class="hero-wheel" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Outer rings -->
+        <circle cx="200" cy="200" r="188" fill="none" stroke="#D4A017" stroke-width="6" opacity="0.45" />
+        <circle cx="200" cy="200" r="176" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.2" />
+        <circle cx="200" cy="200" r="155" fill="none" stroke="#D4A017" stroke-width="2.5" opacity="0.3" />
+        <!-- Inner hub rings -->
+        <circle cx="200" cy="200" r="62" fill="none" stroke="#D4A017" stroke-width="5" opacity="0.55" />
+        <circle cx="200" cy="200" r="48" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.25" />
+        <circle cx="200" cy="200" r="18" fill="#D4A017" opacity="0.4" />
+
+        <!-- 24 spokes (8 major, 16 minor) -->
+        <g stroke="#D4A017" stroke-linecap="round">
+          <!-- Major spokes (8) -->
+          <g opacity="0.6" stroke-width="4.5">
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(0 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(45 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(90 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(135 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(180 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(225 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(270 200 200)" />
+            <line x1="200" y1="12" x2="200" y2="138" transform="rotate(315 200 200)" />
+          </g>
+          <!-- Minor spokes (16) -->
+          <g opacity="0.35" stroke-width="2.5">
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(15 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(30 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(60 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(75 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(105 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(120 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(150 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(165 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(195 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(210 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(240 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(255 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(285 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(300 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(330 200 200)" />
+            <line x1="200" y1="25" x2="200" y2="138" transform="rotate(345 200 200)" />
+          </g>
+        </g>
+
+        <!-- Diamond ornaments at major spoke-ring intersections -->
+        <g fill="#D4A017" opacity="0.6">
+          <rect x="193" y="148" width="14" height="14" transform="rotate(45 200 155)" />
+          <rect x="193" y="238" width="14" height="14" transform="rotate(45 200 245)" />
+          <rect x="148" y="193" width="14" height="14" transform="rotate(45 155 200)" />
+          <rect x="238" y="193" width="14" height="14" transform="rotate(45 245 200)" />
+          <rect x="160" y="160" width="10" height="10" transform="rotate(45 165 165)" />
+          <rect x="230" y="230" width="10" height="10" transform="rotate(45 235 235)" />
+          <rect x="230" y="160" width="10" height="10" transform="rotate(45 235 165)" />
+          <rect x="160" y="230" width="10" height="10" transform="rotate(45 165 235)" />
+        </g>
+
+        <!-- Petal ornaments on outer rim (24 petals) -->
+        <g fill="#D4A017" opacity="0.25">
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(0 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(15 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(30 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(45 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(60 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(75 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(90 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(105 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(120 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(135 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(150 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(165 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(180 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(195 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(210 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(225 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(240 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(255 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(270 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(285 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(300 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(315 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(330 200 200)" />
+          <ellipse cx="200" cy="28" rx="7" ry="12" transform="rotate(345 200 200)" />
+        </g>
+
+        <!-- Tiny rim dots (24 at regular intervals) -->
+        <g fill="#D4A017" opacity="0.5">
+          <circle cx="200" cy="14" r="3" transform="rotate(0 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(15 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(30 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(45 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(60 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(75 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(90 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(105 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(120 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(135 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(150 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(165 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(180 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(195 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(210 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(225 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(240 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(255 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(270 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(285 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(300 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(315 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(330 200 200)" />
+          <circle cx="200" cy="14" r="3" transform="rotate(345 200 200)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Hero copy -->
+    <div class="hero-content">
+      <span class="hero-label">✦ Odisha, India ✦</span>
+
+      <h1 class="hero-title">
+        <span class="hero-title-discover">Discover</span>
+        <span class="hero-title-main">KALINGA</span>
+        <span class="hero-title-sub">
+          A journey through ancient temples,<br>
+          living culture &amp; untouched nature
+        </span>
+      </h1>
+
+      <div class="hero-cta-group">
+        <a href="#destinations" class="btn-primary">Explore Destinations</a>
+        <a href="#culture" class="btn-outline">Our Culture</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-number">3</span>
+          <span class="stat-label">UNESCO Sites</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-number">480km</span>
+          <span class="stat-label">Coastline</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-number">62</span>
+          <span class="stat-label">Tribal Groups</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Ancient Temples</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span class="label-text">About Odisha</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title">The Land of Temples,<br><em>Tribes &amp; Tides</em></h2>
+
+      <div class="about-grid">
+        <!-- Left: pull quote -->
+        <div>
+          <div class="pull-quote">
+            <span class="quote-mark">"</span>
+            <blockquote>Odisha is where ancient stone speaks louder than modern words — every temple wall tells a story
+              that has survived a thousand monsoons.</blockquote>
+            <cite>— Kalinga Trails</cite>
+          </div>
+          <div class="about-vertical-text">KALINGA · ODISHA · INDIA</div>
+        </div>
+
+        <!-- Right: body copy + highlights -->
+        <div>
+          <p class="about-body">Odisha (formerly Orissa) sits on the eastern coast of India, cradled between the Bay of
+            Bengal and the Eastern Ghats. For most of the world, it remains a well-kept secret — overshadowed by louder
+            destinations. But those who come here know the truth.</p>
+          <p class="about-body">This is the land where the Konark Sun Temple was built in the 13th century as a gigantic
+            stone chariot — so astronomically precise that it served as a calendar. Where the Jagannath Temple has
+            served free meals to thousands of pilgrims every single day for over 900 years.</p>
+          <p class="about-body about-italic">Odisha is not a destination you visit. It is a destination that <em>stays
+              with you.</em></p>
+
+          <div class="about-highlights">
+            <div class="about-highlight highlight-1">
+              <div class="highlight-icon">⛩</div>
+              <div>
+                <h4>Temple Architecture</h4>
+                <p>Odisha's Kalinga-style temples are unlike any other in India — their distinctive beehive towers have
+                  inspired architects for centuries.</p>
+              </div>
+            </div>
+            <div class="about-highlight highlight-2">
+              <div class="highlight-icon">◈</div>
+              <div>
+                <h4>Tribal Heritage</h4>
+                <p>62 scheduled tribes including the Kondhs, Bondas, and Dongria call Odisha home — each with distinct
+                  art forms and oral traditions.</p>
+              </div>
+            </div>
+            <div class="about-highlight highlight-3">
+              <div class="highlight-icon">〜</div>
+              <div>
+                <h4>Natural Wonders</h4>
+                <p>From Chilika Lake (Asia's largest coastal lagoon) to Simlipal Tiger Reserve, Odisha's nature is
+                  breathtaking and largely untouched.</p>
+              </div>
+            </div>
+            <div class="about-highlight highlight-4">
+              <div class="highlight-icon">✦</div>
+              <div>
+                <h4>Living Art</h4>
+                <p>Pattachitra painting, Sambalpuri weaving, Dhokra metal casting — Odisha's craft traditions are
+                  living, commercial, and evolving.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       DESTINATIONS
+  ═══════════════════════════════════════════ -->
+  <section id="destinations" class="destinations-section">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span class="label-text">Where To Go</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title">Places That Stay <em>With You</em></h2>
+      <p class="section-subtitle">Five destinations across Odisha that represent the full range of what this
+        extraordinary state has to offer.</p>
+
+      <div class="destinations-grid">
+
+        <!-- Konark -->
+        <article class="destination-card dest-1">
+          <div class="dest-visual">
+            <img src="assets/KonarkSunTemple.jpeg" alt="Konark Sun Temple">
+            <div class="dest-visual-inner">
+              <div class="dest-region">Puri District · UNESCO World Heritage</div>
+              <h3 class="dest-name">Konark Sun Temple</h3>
+            </div>
+          </div>
+          <div class="dest-body">
+            <p>Built in 1250 CE as a colossal stone chariot dedicated to the Sun God Surya. The entire temple is
+              designed as a 24-wheeled chariot pulled by 7 horses — each wheel a precise sundial. One of the most
+              extraordinary architectural achievements of medieval India.</p>
+            <div class="dest-meta">
+              <span class="meta-item"><strong>Best Time:</strong> Oct–Mar</span>
+              <span class="meta-item"><strong>Must See:</strong> Sunrise over the chariot wheels</span>
+            </div>
+            <a href="#contact" class="card-link">Plan Visit →</a>
+          </div>
+        </article>
+
+        <!-- Puri -->
+        <article class="destination-card dest-2">
+          <div class="dest-visual">
+            <img src="assets/PuriJagannathDham.jpeg" alt="Puri Jagannath Temple">
+            <div class="dest-visual-inner">
+              <div class="dest-region">Puri District · Sacred Dham</div>
+              <h3 class="dest-name">Puri — Jagannath Dham</h3>
+            </div>
+          </div>
+          <div class="dest-body">
+            <p>One of India's four sacred dhams. The Jagannath Temple has fed thousands of pilgrims free Mahaprasad
+              daily for over 900 years. The Rath Yatra draws over 1 million pilgrims annually through the streets of
+              Puri.</p>
+            <div class="dest-meta">
+              <span class="meta-item"><strong>Best Time:</strong> Year-round</span>
+              <span class="meta-item"><strong>Festival:</strong> Rath Yatra (June/July)</span>
+            </div>
+            <a href="#contact" class="card-link">Plan Visit →</a>
+          </div>
+        </article>
+
+        <!-- Chilika Lake -->
+        <article class="destination-card dest-3">
+          <div class="dest-visual">
+            <img src="assets/ChilikaLake.jpeg" alt="Chilika Lake">
+            <div class="dest-visual-inner">
+              <div class="dest-region">Khurda / Ganjam · Asia's Largest Lagoon</div>
+              <h3 class="dest-name">Chilika Lake</h3>
+            </div>
+          </div>
+          <div class="dest-body">
+            <p>1,100 sq km of shimmering water, home to the rare Irrawaddy dolphin and over a million migratory birds
+              every winter. The lake changes color — silver at dawn, turquoise at noon, gold at dusk.</p>
+            <div class="dest-meta">
+              <span class="meta-item"><strong>Best Time:</strong> Nov–Feb</span>
+              <span class="meta-item"><strong>Must See:</strong> Dolphin watching at Satapada</span>
+            </div>
+            <a href="#contact" class="card-link">Plan Visit →</a>
+          </div>
+        </article>
+
+        <!-- Simlipal -->
+        <article class="destination-card dest-4">
+          <div class="dest-visual">
+            <img src="assets/SimilipalTigerReserve.jpeg" alt="Simlipal Tiger Reserve">
+            <div class="dest-visual-inner">
+              <div class="dest-region">Mayurbhanj · Tiger Reserve</div>
+              <h3 class="dest-name">Simlipal Tiger Reserve</h3>
+            </div>
+          </div>
+          <div class="dest-body">
+            <p>2,750 sq km of sal forests, waterfalls, and tribal villages. Home to India's 2nd highest waterfall —
+              Barehipani. One of 9 original Project Tiger reserves, where time moves at the pace of the forest.</p>
+            <div class="dest-meta">
+              <span class="meta-item"><strong>Best Time:</strong> Nov–May</span>
+              <span class="meta-item"><strong>Must See:</strong> Barehipani Waterfall</span>
+            </div>
+            <a href="#contact" class="card-link">Plan Visit →</a>
+          </div>
+        </article>
+
+        <!-- Bhubaneswar -->
+        <article class="destination-card dest-5">
+          <div class="dest-visual">
+            <img src="assets/ILoveBhubaneswar.jpeg" alt="Bhubaneswar Temple City">
+            <div class="dest-visual-inner">
+              <div class="dest-region">Capital City · 700+ Temples</div>
+              <h3 class="dest-name">Bhubaneswar</h3>
+            </div>
+          </div>
+          <div class="dest-body">
+            <p>The Temple City of India — over 700 temples, with the 1100 CE Lingaraj Temple at its heart. A city that
+              successfully blends ancient and modern without either losing its identity.</p>
+            <div class="dest-meta">
+              <span class="meta-item"><strong>Best Time:</strong> Oct–Mar</span>
+              <span class="meta-item"><strong>Must See:</strong> Lingaraj Temple at dawn</span>
+            </div>
+            <a href="#contact" class="card-link">Plan Visit →</a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CULTURE
+  ═══════════════════════════════════════════ -->
+  <section id="culture" class="culture-section">
+    <div class="container">
+
+      <div class="section-label">
+        <span class="label-line" style="background:var(--clr-accent);opacity:0.6"></span>
+        <span class="label-text" style="color:var(--clr-accent)">Living Heritage</span>
+        <span class="label-line" style="background:var(--clr-accent);opacity:0.6"></span>
+      </div>
+      <h2 class="section-title light">Festivals That <em>Move the Earth</em></h2>
+      <p class="section-subtitle light">Odisha's culture is not preserved in museums. It lives in the streets, the
+        forests, and the hands of its people.</p>
+
+      <!-- ── Rath Yatra — content left, video right ── -->
+      <div class="culture-feature">
+        <div class="culture-feature-content">
+          <span class="culture-tag">Annual Festival · June / July</span>
+          <h3 class="culture-feature-title">Rath Yatra</h3>
+          <p class="culture-feature-body">The Rath Yatra of Puri is one of the oldest and largest religious processions
+            in the world. Three massive wooden chariots — 14 meters tall, built fresh each year from sacred trees —
+            carry the idols of Lord Jagannath, Subhadra, and Balabhadra through the streets. Over 1 million pilgrims
+            participate.</p>
+          <p class="culture-feature-body">The festival is so ancient and powerful that the English word
+            <em>juggernaut</em> derives directly from "Jagannath." When the chariot begins to move, pulled by thousands
+            of hands, the ground itself seems to shake.
+          </p>
+          <div class="culture-stats">
+            <div class="culture-stat"><span>1M+</span><small>Pilgrims annually</small></div>
+            <div class="culture-stat"><span>14 m</span><small>Chariot height</small></div>
+            <div class="culture-stat"><span>700+</span><small>Years of tradition</small></div>
+          </div>
+        </div>
+
+        <!-- Video — muted autoplay loop, no audio -->
+        <div class="culture-video-panel">
+          <video src="assets/Rathayatra-video.mp4" autoplay loop muted playsinline preload="auto"
+            aria-label="Rath Yatra festival video"></video>
+        </div>
+      </div>
+
+      <!-- ── Konark Dance Festival — video left, content right ── -->
+      <div class="konark-dance-feature">
+        <!-- Video on the LEFT -->
+        <div class="culture-video-panel">
+          <video src="assets/KonarkDanceFestival.mp4" autoplay loop muted playsinline preload="auto"
+            aria-label="Konark Dance Festival performance video"></video>
+        </div>
+
+        <!-- Content on the RIGHT -->
+        <div>
+          <span class="culture-tag-amber">Annual Festival · December</span>
+          <h3 class="konark-dance-title">Konark Dance Festival</h3>
+          <p class="konark-dance-body">Every year in December, the 5-day Konark Dance Festival unfolds against the
+            illuminated backdrop of the Sun Temple. Classical dancers from across India perform Odissi, Bharatanatyam,
+            Kathak, and Kuchipudi using the 13th-century stone temple as a natural stage.</p>
+          <p class="konark-dance-body" style="margin-top:1rem">It is the most atmospheric classical dance festival in
+            the country — where ancient stone and living tradition meet under the open sky. A UNESCO-recognized
+            intangible cultural heritage.</p>
+        </div>
+      </div>
+
+      <!-- ── Art Traditions ── -->
+      <h3 class="culture-sub-heading">The Art Forms That Define Us</h3>
+      <div class="culture-arts-grid">
+
+        <div class="culture-art-card art-1">
+          <div class="art-card-top">
+            <img src="assets/Pattachitra.jpeg" alt="Pattachitra traditional painting">
+            <div class="art-card-top-overlay"></div>
+            <span class="art-number">01</span>
+          </div>
+          <div class="art-card-body">
+            <h4>Pattachitra</h4>
+            <p>Traditional cloth paintings from Puri, featuring scenes from Hindu epics in bold black outlines filled
+              with natural colors — red from hingula, yellow from harital, white from conch shells. Pattachitra artists
+              have sold their work at Puri temple gates for over 500 years.</p>
+            <span class="art-origin">Origin: Puri &amp; Raghurajpur</span>
+          </div>
+        </div>
+
+        <div class="culture-art-card art-2">
+          <div class="art-card-top">
+            <img src="assets/SambalpuriWeaving.jpeg" alt="Sambalpuri ikat silk weaving">
+            <div class="art-card-top-overlay"></div>
+            <span class="art-number">02</span>
+          </div>
+          <div class="art-card-body">
+            <h4>Sambalpuri Weaving</h4>
+            <p>Intricate ikat-dyed silk and cotton weaves from western Odisha — each sari can take a master weaver 3–6
+              months. The "Bandha" technique ties threads before dyeing, creating patterns that appear only after
+              weaving. No two pieces are exactly alike.</p>
+            <span class="art-origin">Origin: Sambalpur &amp; Bargarh</span>
+          </div>
+        </div>
+
+        <div class="culture-art-card art-3">
+          <div class="art-card-top">
+            <img src="assets/DhokraMetalCasting.jpeg" alt="Dhokra metal casting sculpture">
+            <div class="art-card-top-overlay"></div>
+            <span class="art-number">03</span>
+          </div>
+          <div class="art-card-body">
+            <h4>Dhokra Metal Casting</h4>
+            <p>The world's oldest non-ferrous metal casting technique — over 4,000 years old — practiced by Dhokra
+              artisans of Dhenkanal using the "lost wax" method. Molten brass poured into a clay mold; the mold is
+              broken to reveal a unique, irreproducible sculpture.</p>
+            <span class="art-origin">Origin: Dhenkanal, Odisha</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CUISINE
+  ═══════════════════════════════════════════ -->
+  <section id="cuisine" class="cuisine-section">
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span class="label-text">Odia Food Culture</span>
+        <span class="label-line"></span>
+      </div>
+      <h2 class="section-title">The Food of <em>Odisha</em></h2>
+      <p class="section-subtitle">Simple, honest, deeply nourishing — Odia cuisine is shaped by temple traditions,
+        coastal geography, and forest ingredients.</p>
+
+      <div class="food-layout">
+
+        <!-- Hero card: Dalma -->
+        <div class="food-card food-1">
+          <div class="food-visual">
+            <img src="assets/Dalma.jpeg" alt="Dalma — Odisha's soul food">
+            <div class="food-visual-overlay"></div>
+            <div class="food-badge">Featured Dish</div>
+            <h3 class="food-name">Dalma</h3>
+          </div>
+          <div class="food-body">
+            <span class="food-flavor">Earthy · Mildly Spiced · Coconut-sweetened</span>
+            <p>Odisha's soul food. Lentils cooked with seasonal vegetables — raw papaya, raw banana, xam, beans — and
+              tempered with panch phoron (five spice) and grated coconut. Simple, nourishing, and deeply satisfying. It
+              is the everyday food of Odisha and also the sacred Mahaprasad offering at the Jagannath Temple.</p>
+            <p class="food-pairing"><strong>Best eaten:</strong> With steamed rice, fried saga (spinach), and a dash of
+              ghee</p>
+          </div>
+        </div>
+
+        <!-- 4 smaller cards -->
+        <div class="food-cards-small">
+
+          <div class="food-card food-2">
+            <div class="food-visual">
+              <img src="assets/PakhalaBhata.jpeg" alt="Pakhala Bhata fermented rice">
+              <div class="food-visual-overlay"></div>
+              <h3 class="food-name">Pakhala Bhata</h3>
+            </div>
+            <div class="food-body">
+              <span class="food-flavor">Fermented · Cooling · Probiotic</span>
+              <p>Fermented rice soaked in water overnight, served cold with roasted cumin and fried vegetables. The
+                ultimate Odisha summer food. Celebrated annually on Pakhala Dibasa in March.</p>
+            </div>
+          </div>
+
+          <div class="food-card food-3">
+            <div class="food-visual">
+              <img src="assets/ChenaPodo.jpeg" alt="Chhena Poda burnt cottage cheese dessert">
+              <div class="food-visual-overlay"></div>
+              <h3 class="food-name">Chhena Poda</h3>
+            </div>
+            <div class="food-body">
+              <span class="food-flavor">Caramel · Creamy · Rich</span>
+              <p>Burnt cottage cheese dessert — Odisha's greatest gift to Indian sweets. Fresh cottage cheese baked over
+                charcoal until the outside caramelizes. Reportedly Lord Jagannath's favorite sweet.</p>
+            </div>
+          </div>
+
+          <div class="food-card food-4">
+            <div class="food-visual">
+              <img src="assets/machaBesara.jpeg" alt="Macha Besara mustard fish curry">
+              <div class="food-visual-overlay"></div>
+              <h3 class="food-name">Macha Besara</h3>
+            </div>
+            <div class="food-body">
+              <span class="food-flavor">Pungent · Sharp · Mustard-forward</span>
+              <p>Fresh rohu fish cooked in a sharp mustard paste with turmeric and panch phoron. The mustard intensity
+                sets it apart from any fish curry in neighboring states. A coastal Odisha staple.</p>
+            </div>
+          </div>
+
+          <div class="food-card food-5">
+            <div class="food-visual">
+              <img src="assets/Rasabali.jpeg" alt="Rasabali cottage cheese in sweetened milk">
+              <div class="food-visual-overlay"></div>
+              <h3 class="food-name">Rasabali</h3>
+            </div>
+            <div class="food-body">
+              <span class="food-flavor">Sweet · Milky · Saffron-perfumed</span>
+              <p>Flattened fried cottage cheese discs soaked in thickened sweetened milk with cardamom and saffron. A
+                GI-tagged product of Odisha, served as temple prasad in Kendrapara.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       TRAVEL TIPS
+  ═══════════════════════════════════════════ -->
+  <section class="tips-section">
+    <div class="container">
+      <h3 class="tips-heading">Practical Travel Guide</h3>
+      <div class="tips-grid">
+
+        <div class="tip-card tip-1">
+          <div class="tip-icon">◷</div>
+          <h4>Best Time to Visit</h4>
+          <p>October to March — post-monsoon greenery, comfortable temperatures (20–30 °C), and most festivals. Avoid
+            May–June (extreme heat). Monsoon (July–Sept) is for those who love lush green landscapes.</p>
+        </div>
+
+        <div class="tip-card tip-2">
+          <div class="tip-icon">✈</div>
+          <h4>How to Reach</h4>
+          <p>Bhubaneswar Airport (BBI) has direct flights from Delhi, Mumbai, Bangalore, Kolkata, and Chennai. Puri and
+            Bhubaneswar are also on the direct train route from all major Indian cities.</p>
+        </div>
+
+        <div class="tip-card tip-3">
+          <div class="tip-icon">◎</div>
+          <h4>Getting Around</h4>
+          <p>Hire a local auto-rickshaw driver as your guide — they know the off-path temples better than any tourist
+            office. Bhubaneswar–Puri: 60 km. Puri–Konark: 35 km. For tribal areas use authorized eco-tourism operators.
+          </p>
+        </div>
+
+        <div class="tip-card tip-4">
+          <div class="tip-icon">⌂</div>
+          <h4>Where to Stay</h4>
+          <p>Puri has beach guesthouses from ₹800/night. Bhubaneswar has all categories from budget to 5-star. For
+            tribal and forest areas, book through authorized eco-tourism operators to ensure community benefit and
+            safety.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT — Premium redesign
+  ═══════════════════════════════════════════ -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="contact-header">
+        <div class="section-label">
+          <span class="label-line"></span>
+          <span class="label-text">Plan Your Trip</span>
+          <span class="label-line"></span>
+        </div>
+        <h2 class="section-title">Start Your <em>Kalinga Journey</em></h2>
+        <p class="section-subtitle">Tell us what calls to you and we'll craft your perfect Odisha itinerary — temples,
+          nature, culture, or all three.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- ── Form ── -->
+        <div class="contact-form-wrap">
+          <h3 class="contact-form-title">Request Your Itinerary</h3>
+          <form class="contact-form" name="google-sheet">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Your Name *</label>
+                <input type="text" name="name" id="name" class="form-input" placeholder="Full name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Email *</label>
+                <input type="email" name="email" id="email" class="form-input" placeholder="your@email.com" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" name="phone" id="phone" class="form-input" placeholder="+91 XXXXX XXXXX">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Preferred Travel Date</label>
+                <input type="date" name="travelDate" id="travelDate" class="form-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Number of Travelers</label>
+              <input type="number" name="travelers" id="travelers" class="form-input" min="1" max="20"
+                placeholder="How many people?">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Which Places Interest You?</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Konark"> Konark Sun
+                  Temple</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Puri"> Puri &amp; Jagannath
+                  Temple</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Chilika"> Chilika
+                  Lake</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Simlipal"> Simlipal Tiger
+                  Reserve</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Bhubaneswar"> Bhubaneswar
+                  Temples</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Tribal"> Tribal Areas &amp;
+                  Culture</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="All" checked> All of
+                  Odisha!</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Special Requirements or Questions</label>
+              <textarea name="requirements" id="requirements" class="form-input form-textarea"
+                placeholder="Dietary needs, accessibility requirements, special interests…"></textarea>
+            </div>
+
+            <button type="submit" class="form-submit" id="submitBtn">Plan My Trip to Odisha ✦</button>
+          </form>
+        </div>
+
+        <!-- ── Sidebar ── -->
+        <div class="contact-sidebar">
+
+          <h3 class="contact-reasons-title">Why Travel with<br><em>Kalinga Trails?</em></h3>
+
+          <div class="reason-card">
+            <div class="reason-icon-wrap">⛩</div>
+            <div>
+              <h4>Deep Local Knowledge</h4>
+              <p>Routes and experiences curated by Odias who grew up here — including hidden temples, off-season gems,
+                and communities you won't find on TripAdvisor.</p>
+            </div>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon-wrap">🌿</div>
+            <div>
+              <h4>Responsible Tourism</h4>
+              <p>We work directly with tribal communities, local guides, and family-run guesthouses so your trip creates
+                real economic value for the people of Odisha.</p>
+            </div>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon-wrap">✦</div>
+            <div>
+              <h4>Tailored Itineraries</h4>
+              <p>No cookie-cutter packages. Every trip is built from scratch around your travel dates, budget,
+                interests, and pace — whether you have 3 days or 3 weeks.</p>
+            </div>
+          </div>
+
+          <!-- Contact details card -->
+          <div class="contact-info-card">
+            <h4 class="contact-info-title">Reach Us Directly</h4>
+            <div class="contact-info-item">
+              <span class="contact-info-icon">✉</span>
+              <span>nilambarsonubehera@gmail.com</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-icon">☎</span>
+              <span>+91 72050 95602</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-icon">◎</span>
+              <span>Bhubaneswar, Odisha — 751001</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-icon">⏱</span>
+              <span>Mon–Sat &nbsp;·&nbsp; 9 AM – 6 PM IST</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <a href="#home" class="nav-logo" style="margin-bottom:1rem;display:inline-flex">
+            <span class="logo-main" style="font-size:1.3rem">KALINGA</span>
+            <span class="logo-sub">TRAILS</span>
+          </a>
+          <p class="footer-tagline">Discover the Soul of Odisha</p>
+          <p class="footer-brand-note">Built with love by a student from Bhadrak, Odisha. A passion project celebrating
+            the land and culture of my home state. Created as InAmigos Foundation Task 3.</p>
+
+          <!-- Like Button Component -->
+          <div class="like-section">
+            <button class="like-btn" id="likeBtn" aria-label="Like this project">
+              <span class="like-icon">❤</span>
+              <span class="like-text">Love the creativity?</span>
+            </button>
+            <div class="like-counter">
+              <span id="likeCount">3</span> likes
+            </div>
+          </div>
+
+          <div class="footer-social">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">YouTube</a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Odisha</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#culture">Culture</a></li>
+            <li><a href="#cuisine">Cuisine</a></li>
+            <li><a href="#contact">Plan Your Trip</a></li>
+          </ul>
+        </div>
+
+        <!-- Destinations -->
+        <div>
+          <h5 class="footer-heading">Top Destinations</h5>
+          <ul class="footer-links">
+            <li><a href="#destinations">Konark Sun Temple</a></li>
+            <li><a href="#destinations">Puri Jagannath Temple</a></li>
+            <li><a href="#destinations">Chilika Lake</a></li>
+            <li><a href="#destinations">Simlipal Tiger Reserve</a></li>
+            <li><a href="#destinations">Bhubaneswar</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h5 class="footer-heading">Contact</h5>
+          <p class="footer-contact-p">nilambarsonubehera@gmail.com</p>
+          <p class="footer-contact-p">+91 72050 95602</p>
+          <p class="footer-contact-p">Bhubaneswar, Odisha<br>India — 751001</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Kalinga Trails. Made with ♥ in Odisha, India. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
