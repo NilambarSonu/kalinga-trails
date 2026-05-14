@@ -6,7 +6,6 @@ import { neon } from '@neondatabase/serverless';
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
-// CORS helper
 function setCORS(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -16,7 +15,6 @@ function setCORS(res) {
 export default async function handler(req, res) {
   setCORS(res);
 
-  // Preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -28,15 +26,26 @@ export default async function handler(req, res) {
   const sql = neon(DATABASE_URL);
 
   try {
-    // ── GET: return total like count ──────────────────────────────────────
+    // ── GET: return total like count + whether this fingerprint already liked ──
     if (req.method === 'GET') {
-      // NOTE: no quotes → PostgreSQL uses lowercase "kalinga_trails"
-      const rows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
-      const total = parseInt(rows[0].total, 10);
-      return res.status(200).json({ likes: total, success: true });
+      const { fingerprint } = req.query || {};
+
+      const countRows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
+      const total = parseInt(countRows[0].total, 10);
+
+      // If a fingerprint was passed, check if it exists in the DB
+      let hasLiked = false;
+      if (fingerprint && fingerprint.length >= 8) {
+        const checkRows = await sql`
+          SELECT 1 FROM kalinga_trails WHERE fingerprint = ${fingerprint} LIMIT 1
+        `;
+        hasLiked = checkRows.length > 0;
+      }
+
+      return res.status(200).json({ likes: total, hasLiked, success: true });
     }
 
-    // ── POST: record a like (fingerprint-dedup) ───────────────────────────
+    // ── POST: record a like (fingerprint-dedup) ────────────────────────────
     if (req.method === 'POST') {
       const { fingerprint } = req.body || {};
 
@@ -44,26 +53,24 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Valid fingerprint required', success: false });
       }
 
-      // Attempt insert; UNIQUE constraint on fingerprint will reject duplicates
       try {
         await sql`
           INSERT INTO kalinga_trails (fingerprint)
           VALUES (${fingerprint})
         `;
 
-        // Return updated count
         const rows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
         const total = parseInt(rows[0].total, 10);
         return res.status(200).json({ likes: total, success: true, alreadyLiked: false });
 
       } catch (insertErr) {
-        // Postgres error code 23505 = unique_violation (duplicate fingerprint)
+        // Postgres 23505 = unique_violation (duplicate fingerprint)
         if (insertErr.code === '23505') {
           const rows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
           const total = parseInt(rows[0].total, 10);
           return res.status(200).json({ likes: total, success: false, alreadyLiked: true });
         }
-        throw insertErr; // re-throw unexpected errors
+        throw insertErr;
       }
     }
 
