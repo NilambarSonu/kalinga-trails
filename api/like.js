@@ -1,6 +1,6 @@
 // api/like.js — Vercel Serverless Function
 // Neon PostgreSQL like system for Kalinga Trails
-// Table: Kalinga_trails (fingerprint TEXT UNIQUE, created_at TIMESTAMP)
+// Table: kalinga_trails (PostgreSQL lowercases unquoted identifiers)
 
 import { neon } from '@neondatabase/serverless';
 
@@ -30,7 +30,8 @@ export default async function handler(req, res) {
   try {
     // ── GET: return total like count ──────────────────────────────────────
     if (req.method === 'GET') {
-      const rows = await sql`SELECT COUNT(*) AS total FROM "Kalinga_trails"`;
+      // NOTE: no quotes → PostgreSQL uses lowercase "kalinga_trails"
+      const rows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
       const total = parseInt(rows[0].total, 10);
       return res.status(200).json({ likes: total, success: true });
     }
@@ -46,19 +47,19 @@ export default async function handler(req, res) {
       // Attempt insert; UNIQUE constraint on fingerprint will reject duplicates
       try {
         await sql`
-          INSERT INTO "Kalinga_trails" (fingerprint)
+          INSERT INTO kalinga_trails (fingerprint)
           VALUES (${fingerprint})
         `;
 
         // Return updated count
-        const rows = await sql`SELECT COUNT(*) AS total FROM "Kalinga_trails"`;
+        const rows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
         const total = parseInt(rows[0].total, 10);
         return res.status(200).json({ likes: total, success: true, alreadyLiked: false });
 
       } catch (insertErr) {
         // Postgres error code 23505 = unique_violation (duplicate fingerprint)
         if (insertErr.code === '23505') {
-          const rows = await sql`SELECT COUNT(*) AS total FROM "Kalinga_trails"`;
+          const rows = await sql`SELECT COUNT(*) AS total FROM kalinga_trails`;
           const total = parseInt(rows[0].total, 10);
           return res.status(200).json({ likes: total, success: false, alreadyLiked: true });
         }
