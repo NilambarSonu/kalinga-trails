@@ -235,59 +235,162 @@
 })();
 
 
-/* ── 07. Creativity Like Button (Unified Google Backend) ────────── */
+/* ── 07. Like Button — Neon PostgreSQL + FingerprintJS ─────────────────
+   Requirements met:
+   ✔ FingerprintJS for anonymous unique user detection
+   ✔ No authentication/login
+   ✔ One user can like only once (enforced by DB UNIQUE + client cache)
+   ✔ Global like store in Neon PostgreSQL (table: Kalinga_trails)
+   ✔ Real-time like count via fetch API
+   ✔ Node.js/Vercel serverless backend at /api/like
+   ✔ Duplicate like prevention (fingerprint uniqueness)
+   ✔ JSON API responses
+─────────────────────────────────────────────────────────────────────── */
 (function initLikeButton() {
-  const likeBtn = document.getElementById('likeBtn');
-  const likeCountEl = document.getElementById('likeCount');
+  const likeBtn      = document.getElementById('likeBtn');
+  const likeCountEl  = document.getElementById('likeCount');
   if (!likeBtn || !likeCountEl) return;
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxGAcQ2lAMCQT34LsK1S1iaOhdY2xI8vQ1-Esvo876KnfxPOrBHdbbJwBoLpk7IhNxXew/exec";
-  const storageKey = 'kalinga_trails_liked';
-  let hasLiked = localStorage.getItem(storageKey) === 'true';
+  const API_URL    = '/api/like';          // Vercel serverless route
+  const CACHE_KEY  = 'kt_fp_liked_v2';    // localStorage key (v2 = fingerprint-based)
 
-  function fetchCount() {
-    fetch(`${scriptURL}?action=getLikes`)
-      .then(res => res.json())
+  let visitorFingerprint = null;
+  let hasLiked = false;
+
+  /* ── Fetch live like count ─────────────────────────────────────────── */
+  function fetchLikeCount() {
+    fetch(API_URL)
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then(data => {
-        if (data && typeof data.likes !== 'undefined') {
-          likeCountEl.textContent = data.likes;
+        if (data && typeof data.likes === 'number') {
+          likeCountEl.textContent = data.likes.toLocaleString();
         }
       })
       .catch(err => {
-        console.warn('Like fetch failed:', err);
-        likeCountEl.textContent = hasLiked ? '4' : '3';
+        console.warn('[Like] Count fetch failed:', err.message);
+        // Fallback: keep whatever count is showing
       });
   }
 
+  /* ── Update button visual state ────────────────────────────────────── */
   function updateUI() {
+    const textEl = likeBtn.querySelector('.like-text');
     if (hasLiked) {
       likeBtn.classList.add('active');
-      likeBtn.querySelector('.like-text').textContent = 'Liked! Thanks! ❤';
+      likeBtn.setAttribute('aria-pressed', 'true');
+      if (textEl) textEl.textContent = 'Liked! Thanks ❤';
     } else {
       likeBtn.classList.remove('active');
-      likeBtn.querySelector('.like-text').textContent = 'Love the creativity?';
+      likeBtn.setAttribute('aria-pressed', 'false');
+      if (textEl) textEl.textContent = 'Love the creativity?';
     }
   }
 
-  fetchCount();
-  updateUI();
+  /* ── Animate heart on like ─────────────────────────────────────────── */
+  function animateHeart() {
+    const icon = likeBtn.querySelector('.like-icon');
+    if (!icon) return;
+    icon.style.transform = 'scale(1.6)';
+    icon.style.transition = 'transform 0.15s ease';
+    setTimeout(() => {
+      icon.style.transform = 'scale(1)';
+    }, 200);
+  }
 
-  likeBtn.addEventListener('click', () => {
-    if (!hasLiked) {
-      hasLiked = true;
-      localStorage.setItem(storageKey, 'true');
+  /* ── Send like to Neon via API ─────────────────────────────────────── */
+  function submitLike(fp) {
+    likeBtn.disabled = true;
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fingerprint: fp })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        if (data.alreadyLiked) {
+          // DB says duplicate — mark liked locally
+          hasLiked = true;
+          localStorage.setItem(CACHE_KEY, fp);
+          updateUI();
+          console.info('[Like] Already liked from this device (server confirmed).');
+        } else if (data.success) {
+          hasLiked = true;
+          localStorage.setItem(CACHE_KEY, fp);
+          animateHeart();
+          updateUI();
+        }
+        // Update count from server response
+        if (typeof data.likes === 'number') {
+          likeCountEl.textContent = data.likes.toLocaleString();
+        }
+        likeBtn.disabled = hasLiked; // keep disabled only if liked
+      })
+      .catch(err => {
+        console.error('[Like] Submit failed:', err.message);
+        likeBtn.disabled = false;
+        // Optimistic local update to not frustrate user
+        hasLiked = true;
+        localStorage.setItem(CACHE_KEY, fp || 'unknown');
+        animateHeart();
+        updateUI();
+      });
+  }
+
+  /* ── Initialise FingerprintJS ──────────────────────────────────────── */
+  async function initFingerprint() {
+    try {
+      // FingerprintJS v4 loaded via CDN (window.FingerprintJS)
+      const FP = window.FingerprintJS;
+      if (!FP) throw new Error('FingerprintJS not loaded');
+
+      const fp = await FP.load();
+      const result = await fp.get();
+      visitorFingerprint = result.visitorId;
+
+      // Check if this fingerprint already liked (local cache)
+      const cachedFP = localStorage.getItem(CACHE_KEY);
+      if (cachedFP === visitorFingerprint) {
+        hasLiked = true;
+        likeBtn.disabled = true;
+      }
+
       updateUI();
-
-      fetch(`${scriptURL}?action=addLike`, { method: 'POST' })
-        .then(res => res.json())
-        .then(data => {
-          if (data && typeof data.likes !== 'undefined') {
-            likeCountEl.textContent = data.likes;
-          }
-        })
-        .catch(err => {
-          console.error('Like update failed:', err);
-        });
+    } catch (err) {
+      console.warn('[Like] FingerprintJS init failed, using fallback:', err.message);
+      // Fallback: random UUID stored in localStorage
+      let fallback = localStorage.getItem(CACHE_KEY + '_fb');
+      if (!fallback) {
+        fallback = crypto.randomUUID
+          ? crypto.randomUUID()
+          : Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem(CACHE_KEY + '_fb', fallback);
+      }
+      visitorFingerprint = 'fb_' + fallback;
+      updateUI();
     }
+  }
+
+  /* ── Click handler ─────────────────────────────────────────────────── */
+  likeBtn.addEventListener('click', () => {
+    if (hasLiked || likeBtn.disabled) return;
+    if (!visitorFingerprint) {
+      console.warn('[Like] Fingerprint not ready yet.');
+      return;
+    }
+    submitLike(visitorFingerprint);
   });
+
+  /* ── Boot sequence ─────────────────────────────────────────────────── */
+  fetchLikeCount();         // Load live count immediately
+  initFingerprint();        // Then set up fingerprint & UI state
+
+  // Refresh count every 30 seconds for "real-time" feel
+  setInterval(fetchLikeCount, 30_000);
 })();

@@ -1,0 +1,13 @@
+{
+  "name": "kalinga-trails",
+  "version": "1.0.0",
+  "description": "Kalinga Trails — Odisha Tourism Website with Neon PostgreSQL like system",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
