@@ -372,7 +372,7 @@ img { display: block; max-width: 100%; }
   min-width: 700px;
   height: 100vw;
   object-fit: cover;
-  transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(-90deg);
   display: block;
 }
 
